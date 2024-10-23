@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .car {
+            position: absolute;
+            width: 100px;
+            top: 0px;
+            left: 0px;
+        }
+
+        .controll {
+            position: absolute;
+            width: 100px;
+            top: 100px;
+            left: 0px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <img src="car.png" id="car" width="100px" class="car" alt="">
+    <div class="controll">
+        <button onclick="car.start()">start</button>
+        <button onclick="car.stop()">end</button>
+        <button onclick="car.PrintAllData()">print</button>
+    </div>
+
+    <div class="controll" style="margin-top:100px ;">
+        <button onclick="car.increasespead()">+</button>
+        <button onclick="car.decreasespead()">-</button>
+    </div>
+    <h1 id="demo" style="margin-top: 400px;"></h1>
+    <script>
+        // const student={
+        // name:'momen magdy',
+        // email:'momen magdy@.com',
+        // phone:'0125485988',
+
+
+        // }
+        // console.log(student);
+        // document.getElementById("demo").innerHTML=
+        // "name is "+student.name +"<br>"+
+        // "email is"+student.email+"<br>"+
+        // "phone is"+student.phone+"<br>";
+
+        const car = {
+
+            name: "BMW",
+            model: "2023",
+            color: "Blue",
+            HoursPower: "10",
+            interval: null,
+
+            start: function () {
+                if (!this.interval) {
+
+
+                    this.interval = setInterval(() => {
+                        let car = document.getElementById("car");
+                        let currentposition = parseInt(car.style.left) || 0;
+                        car.style.left = currentposition + 10 * this.HoursPower + "px";
+                        console.log(currentposition);
+                    }, 500);
+                }
+            },
+            stop: function () {
+                clearInterval(this.interval);
+                this.interval = null;
+            },
+
+            PrintAllData: function () {
+
+                document.getElementById("demo").innerHTML =
+                    ` name is  
+                   ${this.name}
+                     <br> 
+                     model is 
+                    
+                     ${this.model} 
+                      <br> 
+                     color is 
+                     ${this.color}
+                      <br`;
+
+
+            },
+            increasespead: function () {
+                this.HoursPower += 3;
+
+            },
+
+
+            decreasespead: function () {
+                this.HoursPower -= 2;
+
+            }
+        };
+    </script>
+
+</body>
+
+</html>
